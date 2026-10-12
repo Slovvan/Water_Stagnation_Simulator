@@ -28,6 +28,12 @@ class lateral_Flow_Rule:
 
         for row in range(rows):
             for column in range(first_column, columns - 1, 2):
+                if row < rows - 1 and (
+                    current[row + 1][column] < 1.0
+                    or current[row + 1][column + 1] < 1.0
+                ):
+                    continue
+
                 left = updated[row][column]
                 right = updated[row][column + 1]
                 difference = left - right
