@@ -1,13 +1,11 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import cellpylib as cpl
-
-
-ca = cpl.init_simple(200)
-ca = cpl.evolve(ca, 100, apply_rule=lambda n, c, t: cpl.nks_rule(n, 30), 
-                memoize=True)
+from water.water_class import water_cellular_automata
+from water.water_animation import animate
 
 def main():
-    cpl.plot(ca)
+    simulation = water_cellular_automata(grid_size=20, time_steps=30)
+    simulation.add_water(row=2, column=7, amount=1.0)
+    animate(simulation)
+
+
 if __name__ == "__main__":
     main()
