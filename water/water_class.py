@@ -1,6 +1,6 @@
 import numpy as np
 from water.drainage_rule import DrainageRule
-from water.gravity_rule import gravity_Rule, lateral_Flow_Rule
+from water.gravity_rule import gravity_Rule, lateral_Flow_Rule, UniformRainRule, step_physics
 from water.rain_class import RainRule
 
 
@@ -77,6 +77,9 @@ class water_cellular_automata:
             step,
             supported_cells=drain_support,
         )
+        
+        updated = step_physics(updated, step, self.gravity_rule, self.lateral_flow_rule, supported_cells=drain_support)
+
         self.grid = updated
 
     def cellular_automata_2d(self):
